@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+   <head>
+      <title>Timestamps | thejaywhy </title>
+      <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+      <link href="/public/style.css" rel="stylesheet" type="text/css">
+
+   </head>
+
+   <body>
+      <div class="container">
+        <h1>Timestamp Microservice</h1>
+        <p>
+        A solution to the <a href="https://www.freecodecamp.org/challenges/timestamp-microservice">Timestamp MS</a> challenge.
+        </p>   
+     <h3>Features</h3>
+      <ul>
+        <li>Pass a string as a parameter, and it will check to see whether that string contains either a unix timestamp or a natural language date (example: January 1, 2016).</li>
+        <li>If it does, it returns both the Unix timestamp and the natural language form of that date.</li>
+        <li>If it does not contain a date or Unix timestamp, it returns null for those properties.</li>
+      </ul>
+    <h3>Example Usage</h3>
+      <div class="codeblock">
+        <pre >
+          curl https://jy-timestamp-ms.glitch.me/hey
+          {"unix":null,"natural":null}
+        </pre>
+        <pre>
+          curl https://jy-timestamp-ms.glitch.me/December%2015,%202015
+          {"unix":1450137600000,"natural":"December 15, 2015"}
+        </pre>
+        <pre>
+          curl https://jy-timestamp-ms.glitch.me/1450137600000
+          {"unix":1450137600000,"natural":"December 15, 2015"}
+        </pre> 
+      </div>
+    </div>
+   </body>
+
+</html>
