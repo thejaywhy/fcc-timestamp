@@ -1,0 +1,18 @@
+{
+  "name": "jy-timestamp-ms",
+  "dependencies": {
+    "express": "^4.14.0",
+    "strftime": "^0.10.0"
+  },
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": "4.4.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thejaywhy/fcc-timestamp.git"
+  }
+}
