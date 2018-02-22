@@ -4,9 +4,15 @@
     "express": "^4.14.0",
     "strftime": "^0.10.0"
   },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^3.0.0",
+    "mocha": "^5.0.1"
+  },
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "mocha --timeout 10000 --exit"
   },
   "engines": {
     "node": "4.4.5"

@@ -20,13 +20,13 @@ app.get("/:ts", function (request, response) {
     //it's not natural language, so try for unixtime
     date = new Date(parseInt(request.params.ts));
   }
-  
+
   //still not valid? return error
   if (date == "Invalid Date")  return response.json(data);
-       
+
   data.unix = date.getTime(),
   data.natural = strftime('%B %d, %Y', date)
-  
+
   response.json(data);
 });
 
@@ -34,3 +34,5 @@ app.get("/:ts", function (request, response) {
 var listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
 });
+
+module.exports = app; // for testing
