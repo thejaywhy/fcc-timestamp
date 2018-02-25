@@ -7,8 +7,11 @@ var chai = require('chai');
 var chaiHttp = require('chai-http');
 var should = chai.should();
 
-var EXPECTED_TIME_UNIX = 1519275600000;
-var EXPECTED_TIME_NATURAL = "February 22, 2018";
+var EXPECTED_TIME_UNIX = 1519171200;
+var EXPECTED_TIME_NATURAL = "February 21, 2018";
+var EXPECTED_TIME_NATURAL_URLENCODED = "February%2021,%202018";
+
+
 
 chai.use(chaiHttp);
 
@@ -53,7 +56,7 @@ describe('App', () => {
   describe('/GET natural timestamp', () => {
     it('it should return a 200 and timestamp json', (done) => {
       chai.request(server)
-        .get('/' + EXPECTED_TIME_NATURAL)
+        .get('/' + EXPECTED_TIME_NATURAL_URLENCODED)
         .end((err, res) => {
           res.should.have.status(200);
           res.should.be.json;
@@ -68,10 +71,10 @@ describe('App', () => {
     })
   });
 
-  describe('/GET unknown timestamp', () => {
+  describe('/GET unknown date stamp format', () => {
     it('it should return a 200 and null timestamp values', (done) => {
       chai.request(server)
-        .get('/' + "this is not a timestamp")
+        .get('/' + "Dec 24 1982")
         .end((err, res) => {
           res.should.have.status(200);
           res.should.be.json;

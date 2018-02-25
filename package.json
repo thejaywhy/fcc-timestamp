@@ -2,6 +2,7 @@
   "name": "jy-timestamp-ms",
   "dependencies": {
     "express": "^4.14.0",
+    "moment": "^2.20.1",
     "strftime": "^0.10.0"
   },
   "devDependencies": {
