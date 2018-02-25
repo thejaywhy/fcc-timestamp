@@ -1,6 +1,7 @@
 var express = require('express');
 var strftime = require('strftime');
 var app = express();
+var moment = require('moment');
 
 // root, show welcome page / docs
 app.get("/", function (request, response) {
@@ -14,19 +15,22 @@ app.get("/:ts", function (request, response) {
     unix: null,
     natural: null,
   }
-  var date = new Date(request.params.ts);
+  var date_natural = null;
+  // 3rd argument is true for strict parsing
+  var date_unix = moment.utc(request.params.ts, "X", true);
 
-  if (date == "Invalid Date") {
-    //it's not natural language, so try for unixtime
-    date = new Date(parseInt(request.params.ts));
+  if (date_unix.isValid()) {
+    data.natural = date_unix.format('MMMM D, YYYY');
+    data.unix = date_unix.unix();
   }
-  
-  //still not valid? return error
-  if (date == "Invalid Date")  return response.json(data);
-       
-  data.unix = date.getTime(),
-  data.natural = strftime('%B %d, %Y', date)
-  
+  else {
+    date_natural = moment.utc(request.params.ts, "MMMM D, YYYY", true);
+    if ( date_natural.isValid() ) {
+      data.natural = date_natural.format('MMMM D, YYYY');
+      data.unix = date_natural.unix();
+    }
+  }
+
   response.json(data);
 });
 
@@ -34,3 +38,5 @@ app.get("/:ts", function (request, response) {
 var listener = app.listen(process.env.PORT, function () {
   console.log('Your app is listening on port ' + listener.address().port);
 });
+
+module.exports = app; // for testing
